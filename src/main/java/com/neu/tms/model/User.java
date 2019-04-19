@@ -1,6 +1,5 @@
 package com.neu.tms.model;
 
-import javax.annotation.Generated;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,6 +23,15 @@ public class User {
 	@Column(name = "emailId")
 	private String emailId;
 	private String password;
+	
+	public User() {
+		// TODO Auto-generated constructor stub
+	}
+	public User(String emailId, String password) {
+		super();
+		this.emailId = emailId;
+		this.password = password;
+	}
 	public long getId() {
 		return id;
 	}

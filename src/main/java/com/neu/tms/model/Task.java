@@ -2,19 +2,22 @@ package com.neu.tms.model;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-enum TaskSeverity {
-	HIGH,LOW,MEDIUM;
-}
-enum TaskStatus {
-	NOTASSIGNED,NOTSTARTED,INPROGRESS,COMPLETED,NOTTODO ;
-}
+import com.neu.tms.configurations.TaskSeverity;
+import com.neu.tms.configurations.TaskStatus;
+
 @Entity
 @Table(name="Task")
 public class Task {
@@ -25,13 +28,39 @@ public class Task {
 	private long id;
 	private String name;
 	private String description;
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="projectId")
 	private Project project;
+	@Enumerated(EnumType.STRING)
 	private TaskSeverity taskSeverity;
+	@Enumerated(EnumType.STRING)
 	private TaskStatus taskStatus;
 	private Date dueDate;
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="assignedUserId")
 	private User assignedTo;
+	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name="createdUserId")
 	private User createdBy;
-	//comments
+	
+	public Task() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	public Task(String name, String description, Project project, TaskSeverity taskSeverity, TaskStatus taskStatus,
+			Date dueDate, User assignedTo, User createdBy) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.project = project;
+		this.taskSeverity = taskSeverity;
+		this.taskStatus = taskStatus;
+		this.dueDate = dueDate;
+		this.assignedTo = assignedTo;
+		this.createdBy = createdBy;
+	}
+
+
 	public long getId() {
 		return id;
 	}

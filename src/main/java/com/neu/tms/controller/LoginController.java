@@ -11,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.neu.tms.dao.DAO;
+import com.neu.tms.dao.UserDao;
+
 /**
  * Handles requests for the application home page.
  */
@@ -24,6 +27,7 @@ public class LoginController {
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String userLogin(Locale locale, Model model) {
+		UserDao userDao = new UserDao();
 		return "user_login";
 	}
 }

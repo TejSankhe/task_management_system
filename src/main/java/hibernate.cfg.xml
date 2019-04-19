@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+		"http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+		
+<hibernate-configuration>
+<session-factory>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/task_management_system</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">pass123</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.hbm2ddl.auto">update</property>
+		<property name="hibernate.show_sql">true</property>
+		<mapping class="com.neu.tms.model.User"></mapping>
+		<mapping class="com.neu.tms.model.Student"></mapping>
+		<mapping class="com.neu.tms.model.Manager"></mapping>
+		<mapping class="com.neu.tms.model.Admin"></mapping>
+		<mapping class="com.neu.tms.model.Task"></mapping>
+		<mapping class="com.neu.tms.model.Project"></mapping>
+</session-factory>
+</hibernate-configuration>

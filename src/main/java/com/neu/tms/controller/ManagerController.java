@@ -1,12 +1,13 @@
 package com.neu.tms.controller;
 
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,27 +25,20 @@ import com.neu.tms.model.User;
 
 @Controller
 @RequestMapping("/*")
-public class StudentController {
+public class ManagerController {
 	
-	@RequestMapping(value = "/student", method = RequestMethod.GET)
-	public ModelAndView goToStudentHomePage(HttpServletRequest request, HttpServletResponse response) {
+	@RequestMapping(value = "/manager", method = RequestMethod.GET)
+	public ModelAndView goManagersHomePage(HttpServletRequest request, HttpServletResponse response) {
 		Set<Task> tasks = null;
 		User user = (User) request.getSession().getAttribute("user");
-		StudentDao studentDao = new StudentDao();
+		ManagerDao managerDao = new ManagerDao();
 		try {
-			Student student = (Student) studentDao.getStudenrByEmailAddress(user.getEmailId());
-			Set<Task> tempTask = studentDao.getAllTasksOfStudent(user.getEmailId());
-			Set<Task> taskAssigned = new HashSet<Task>();
-			for(Task t : tempTask) {
-				taskAssigned.add(t);
-			}
-			student.setTasksAssigned(taskAssigned);
-			System.out.println(taskAssigned);
-			System.out.println(taskAssigned);
-			return new ModelAndView("studentHome","student",student);
+			Manager manager = (Manager) managerDao.getManagerByEmailAddress(user.getEmailId());
+			manager.setTasks(managerDao.getAllTasksOfManager(user.getEmailId()));
+			System.out.println(managerDao.getAllTasksOfManager(user.getEmailId()).size());
+			return new ModelAndView("managerHome","manager",manager);
 		} catch (Exception e) {
-			e.getStackTrace();
-			return new ModelAndView("error", "errorMessage", "Error while retrieving tasks of student");
+			return new ModelAndView("error", "errorMessage", "Error while retrieving tasks of manager");
 		}
 	}
 }

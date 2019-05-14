@@ -1,7 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-    
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>    
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,21 +36,22 @@
       <input type="text" id="password" class="fadeIn third" name="login" placeholder="password">
       <input type="submit" class="fadeIn fourth" value="Log In">
     </form> -->
-<form>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+<form:form action="${contextPath}/login"  commandName="user" method="post">
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+    <form:input path="emailId" type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email" required="required"/>
   </div>
   <div class="form-group">
     <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+    <form:input path="password" type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" required="required"/>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+</form:form>
 
     <!-- Remind Passowrd -->
     <div id="formFooter">
-      <a class="underlineHover" href="#">Not assigned to any project?</a>
+      <a class="underlineHover" href="${contextPath}/requestToAddProject">Not assigned to any project?</a>
     </div>
 
   </div>

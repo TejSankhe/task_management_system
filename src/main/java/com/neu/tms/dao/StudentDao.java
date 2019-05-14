@@ -34,6 +34,7 @@ public class StudentDao extends DAO{
 			getSession().update(student);
 //			System.out.println(manager);
 			commit();
+			 close();
 		} catch (HibernateException e) {
 			rollback();
 			throw new StudentException("Could not save the student", e);
@@ -48,6 +49,7 @@ public class StudentDao extends DAO{
             criteria.add(Restrictions.eq("emailId", emailId));
             List<Student> student = criteria.list();
             Set<Task> tasks = student.get(0).getTasksAssigned();
+            System.out.println(tasks.size());
             close();
             return tasks;
         } catch (HibernateException e) {

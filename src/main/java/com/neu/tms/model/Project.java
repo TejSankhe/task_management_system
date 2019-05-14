@@ -34,13 +34,11 @@ public class Project {
 	public Project() {
 		// TODO Auto-generated constructor stub
 	}
-	public Project(String name, String description, Manager manager, List<Student> students, List<Task> tasks) {
+	public Project(String name, String description, Manager manager) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.manager = manager;
-		this.students = students;
-		this.tasks = tasks;
 	}
 	public long getId() {
 		return id;

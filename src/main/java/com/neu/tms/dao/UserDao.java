@@ -17,6 +17,7 @@ public class UserDao extends DAO{
             begin();            
             getSession().save(user);     
             commit();
+            close();
             return true;
         } catch (HibernateException e) {
             rollback();
@@ -33,6 +34,29 @@ public class UserDao extends DAO{
             Criteria criteria = getSession().createCriteria(User.class);
             criteria.add(Example.create(exampleUser));
             List<User> user = criteria.list();
+            if(user.size()==0)
+            	return null;
+            User u = user.get(0);
+            close();
+            return u;
+        } catch (HibernateException e) {
+            rollback();
+            throw new UserException("Exception while getting user: " + e.getMessage());
+        }
+    }
+	
+	public User authenticateUser(String emailId, String password)
+            throws UserException {
+        try {
+            begin();   
+            User exampleUser = new User();
+            exampleUser.setEmailId(emailId);
+            exampleUser.setPassword(password);
+            Criteria criteria = getSession().createCriteria(User.class);
+            criteria.add(Example.create(exampleUser));
+            List<User> user = criteria.list();
+            if(user.size()==0)
+            	return null;
             User u = user.get(0);
             close();
             return u;

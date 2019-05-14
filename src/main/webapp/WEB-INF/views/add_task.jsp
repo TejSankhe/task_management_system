@@ -4,78 +4,60 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <head>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
 </head>
 <body>
-	<div class="">
-		<span class="">
-			<div class="">
-		</span>
-		<div>
-				<br />
-				<h3>
-					<h3>Create an Task:</h3>
-				</h3>
-				<form:form accept-charset="UTF-8" action="/addnewTask" commandName="task" method="post">	
-				<table class="table">
-					<tr>
-						<td>Task Name:</td>
-							<td><form:input  class="span3"  path="name" size="30" required="required" />
-					<font color="red"><form:errors path="name" /></font></td>
-					</tr>
-					<tr>
-						<td>Description</td>
-						<td><form:input  class="span3"  path="description" size="30" required="required"/>
-					<font color="red"><form:errors path="description" /></font></td>
-					</tr>
-					<tr>
-						<td>Operating System</td>
-						<td><form:input  class="span3"  path="operatingSystem" size="30" />
-					<font color="red"><form:errors path="operatingSystem" /></font></td>
-					</tr>
-						<td>Problem</td>
-						<td><form:input  class="span3"  path="problem" size="30" required="required" />
-					<font color="red"><form:errors path="problem" /></font></td>
-					<tr>
-						<td>Is Registered</td>
-						<td><form:input  class="span3"  path="isRegistered" size="30"/>
-					<font color="red"><form:errors path="isRegistered" /></font></td>
-					</tr>
-					<tr>
-						<td>Registration Id</td>
-						<td><form:input  class="span3"  path="registrationId" size="30"/>
-					<font color="red"><form:errors path="registrationId" /></font></td>
-					</tr>
-					<tr>
-			<td colspan="2"> <button class="btn btn-warning" type="submit">Add Car</button></td>
-				
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+	<h1 class="display-5">Task Management System Northeastern
+		University</h1>
+	<a href="${contextPath}/logout" style="float: right;"
+		class="btn btn btn-success btn-lg active" role="button"
+		aria-pressed="true">Logout</a>
+	<br>
+	
+	<h3>Create an Task:</h3>
+	<form:form accept-charset="UTF-8" action="${contextPath}/addnewTask"
+		commandName="task" method="post">
+		<table class="table">
+			<tr>
+				<td>Task Name:</td>
+				<td><form:input class="span3" path="name" size="30"
+						required="required" /> <font color="red"><form:errors
+							path="name" /></font></td>
 			</tr>
-					</tr>
-				</table>
-			  </form:form>
-		</div>
-	</div>
+			<tr>
+				<td>Description</td>
+				<td><form:input class="span3" path="description" size="30" />
+			</tr>
+			<tr>
+				<td>Task Severity</td>
+				<td><form:input class="span3" path="taskSeverity" size="30"
+						required="required" /> <font color="red"><form:errors
+							path="taskSeverity" /></font></td>
+			</tr>
+			<tr>
+				<td>Task Status</td>
+				<td><form:input class="span3" path="taskStatus" size="30"
+						required="required" /> <font color="red"><form:errors
+							path="taskStatus" /></font></td>
 
+			</tr>
+			<tr>
+				<td>Assign To</td>
+				<td><input type="email" class="span3" name="assignedToUser"
+					size="30" required="required" /> <font color="red"></font></td>
+			</tr>
+			<tr>
+				<td colspan="2">
+					<button class="btn btn-warning" type="submit">Add Task</button>
+				</td>
 
-	</div>
+			</tr>
 
-
-
-	<!--===============================================================================================-->
-	<script src="${jquerymin}"></script>
-	<!--===============================================================================================-->
-	<script src="${popper}"></script>
-	<script src="${bootstrapJS}"></script>
-	<!--===============================================================================================-->
-	<script src="${select2JS}"></script>
-	<!--===============================================================================================-->
-	<script src="${tiltJS}"></script>
-	<script>
-		$('.js-tilt').tilt({
-			scale : 1.1
-		})
-	</script>
-	<!--===============================================================================================-->
-	<script src="${mainJS}"></script>
-
+		</table>
+	</form:form>
 </body>
 </html>

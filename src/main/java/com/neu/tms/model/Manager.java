@@ -28,11 +28,9 @@ public class Manager extends User {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Manager(String emailId, String password, Project project, Set<Task> tasks, Set<Task> tasksCreated) {
+	public Manager(String emailId, String password, Project project) {
 		super(emailId, password);
 		this.project = project;
-		this.tasks = tasks;
-		this.tasksCreated = tasksCreated;
 	}
 
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

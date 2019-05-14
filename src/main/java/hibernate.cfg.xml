@@ -18,5 +18,6 @@
 		<mapping class="com.neu.tms.model.Admin"></mapping>
 		<mapping class="com.neu.tms.model.Task"></mapping>
 		<mapping class="com.neu.tms.model.Project"></mapping>
+		<mapping class="com.neu.tms.model.UserRequest"></mapping>
 </session-factory>
 </hibernate-configuration>

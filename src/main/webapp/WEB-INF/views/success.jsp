@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Success</h1>
+<h1>Request send successfully</h1>
+
 </body>
 </html>

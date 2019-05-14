@@ -23,11 +23,9 @@ public class Student extends User {
 	}
 	
 
-	public Student(String emailId, String password, Project project, Set<Task> tasksAssigned, Set<Task> tasksCreated) {
+	public Student(String emailId, String password, Project project) {
 		super(emailId, password);
 		this.project = project;
-		this.tasksAssigned = tasksAssigned;
-		this.tasksCreated = tasksCreated;
 	}
 
 

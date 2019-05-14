@@ -66,6 +66,7 @@ public class ManagerDao extends DAO{
 			getSession().update(manager);
 //			System.out.println(manager);
 			commit();
+			 close();
 		} catch (HibernateException e) {
 			rollback();
 			throw new ManagerException("Could not save the manager", e);
@@ -80,6 +81,7 @@ public class ManagerDao extends DAO{
             criteria.add(Restrictions.eq("emailId", emailId));
             List<Manager> manager = criteria.list();
             Set<Task> tasks = manager.get(0).getTasks();
+            System.out.println(tasks.size());
             close();
             return tasks;
         } catch (HibernateException e) {

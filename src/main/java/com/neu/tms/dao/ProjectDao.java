@@ -15,6 +15,7 @@ public class ProjectDao extends DAO{
             begin();            
             getSession().save(project);     
             commit();
+            close();
             return true;
         } catch (HibernateException e) {
             rollback();

@@ -28,18 +28,16 @@ public class Task {
 	private long id;
 	private String name;
 	private String description;
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="projectId")
 	private Project project;
-	@Enumerated(EnumType.STRING)
-	private TaskSeverity taskSeverity;
-	@Enumerated(EnumType.STRING)
-	private TaskStatus taskStatus;
+	private String taskSeverity;
+	private String taskStatus;
 	private Date dueDate;
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="assignedUserId")
 	private User assignedTo;
-	@ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="createdUserId")
 	private User createdBy;
 	
@@ -47,7 +45,7 @@ public class Task {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Task(String name, String description, Project project, TaskSeverity taskSeverity, TaskStatus taskStatus,
+	public Task(String name, String description, Project project, String taskSeverity, String taskStatus,
 			Date dueDate, User assignedTo, User createdBy) {
 		super();
 		this.name = name;
@@ -79,18 +77,23 @@ public class Task {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	public TaskSeverity getTaskSeverity() {
+
+	public String getTaskSeverity() {
 		return taskSeverity;
 	}
-	public void setTaskSeverity(TaskSeverity taskSeverity) {
+
+	public void setTaskSeverity(String taskSeverity) {
 		this.taskSeverity = taskSeverity;
 	}
-	public TaskStatus getTaskStatus() {
+
+	public String getTaskStatus() {
 		return taskStatus;
 	}
-	public void setTaskStatus(TaskStatus taskStatus) {
+
+	public void setTaskStatus(String taskStatus) {
 		this.taskStatus = taskStatus;
 	}
+
 	public Date getDueDate() {
 		return dueDate;
 	}
